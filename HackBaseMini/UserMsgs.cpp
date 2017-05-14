@@ -46,7 +46,7 @@ int TeamInfo(const char *pszName, int iSize, void *pbuf)
 		g_PlayerTeam[iIndex] = 0;
 		if (iIndex == g_Local.iIndex) { g_Local.iTeam = 0; }
 	}
-
+	//g_Local.bAlive = g_Player[iIndex].bAlive;
 	return (*pTeamInfo)(pszName, iSize, pbuf);
 }
 int CurWeapon( const char *pszName , int iSize , void *pbuf )
