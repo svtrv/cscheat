@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{AB486D20-2CAB-4842-952E-D78D80C21EA3}</ProjectGuid>
+    <Keyword>ManagedCProj</Keyword>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v100</PlatformToolset>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CLRSupport>true</CLRSupport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;HBM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;HBM_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="aimbot.cpp" />
+    <ClCompile Include="cFont.cpp" />
+    <ClCompile Include="Client.cpp" />
+    <ClCompile Include="CvarUtils.cpp" />
+    <ClCompile Include="esp.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Offset.cpp" />
+    <ClCompile Include="UserMsgs.cpp" />
+    <ClCompile Include="Utils.cpp" />
+    <ClCompile Include="valvesdk\common\interface.cpp" />
+    <ClCompile Include="valvesdk\misc\parsemsg.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="aimbot.h" />
+    <ClInclude Include="cFont.h" />
+    <ClInclude Include="Client.h" />
+    <ClInclude Include="CvarUtils.h" />
+    <ClInclude Include="esp.h" />
+    <ClInclude Include="main.h" />
+    <ClInclude Include="mathlib.h" />
+    <ClInclude Include="Offset.h" />
+    <ClInclude Include="PEB.h" />
+    <ClInclude Include="UserMsgs.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="valvesdk\common\beamdef.h" />
+    <ClInclude Include="valvesdk\common\cl_entity.h" />
+    <ClInclude Include="valvesdk\common\com_model.h" />
+    <ClInclude Include="valvesdk\common\const.h" />
+    <ClInclude Include="valvesdk\common\con_nprint.h" />
+    <ClInclude Include="valvesdk\common\crc.h" />
+    <ClInclude Include="valvesdk\common\cvardef.h" />
+    <ClInclude Include="valvesdk\common\demo_api.h" />
+    <ClInclude Include="valvesdk\common\director_cmds.h" />
+    <ClInclude Include="valvesdk\common\dlight.h" />
+    <ClInclude Include="valvesdk\common\dll_state.h" />
+    <ClInclude Include="valvesdk\common\engine_launcher_api.h" />
+    <ClInclude Include="valvesdk\common\entity_state.h" />
+    <ClInclude Include="valvesdk\common\entity_types.h" />
+    <ClInclude Include="valvesdk\common\event_api.h" />
+    <ClInclude Include="valvesdk\common\event_args.h" />
+    <ClInclude Include="valvesdk\common\event_flags.h" />
+    <ClInclude Include="valvesdk\common\exefuncs.h" />
+    <ClInclude Include="valvesdk\common\hltv.h" />
+    <ClInclude Include="valvesdk\common\interface.h" />
+    <ClInclude Include="valvesdk\common\in_buttons.h" />
+    <ClInclude Include="valvesdk\common\itrackeruser.h" />
+    <ClInclude Include="valvesdk\common\ivoicetweak.h" />
+    <ClInclude Include="valvesdk\common\mathlib.h" />
+    <ClInclude Include="valvesdk\common\netadr.h" />
+    <ClInclude Include="valvesdk\common\net_api.h" />
+    <ClInclude Include="valvesdk\common\nowin.h" />
+    <ClInclude Include="valvesdk\common\particledef.h" />
+    <ClInclude Include="valvesdk\common\pmtrace.h" />
+    <ClInclude Include="valvesdk\common\qfont.h" />
+    <ClInclude Include="valvesdk\common\ref_params.h" />
+    <ClInclude Include="valvesdk\common\r_efx.h" />
+    <ClInclude Include="valvesdk\common\screenfade.h" />
+    <ClInclude Include="valvesdk\common\studio_event.h" />
+    <ClInclude Include="valvesdk\common\triangleapi.h" />
+    <ClInclude Include="valvesdk\common\usercmd.h" />
+    <ClInclude Include="valvesdk\common\weaponinfo.h" />
+    <ClInclude Include="valvesdk\engine\anorms.h" />
+    <ClInclude Include="valvesdk\engine\beamdef.h" />
+    <ClInclude Include="valvesdk\engine\cdll_dll.h" />
+    <ClInclude Include="valvesdk\engine\cdll_engine_dll.h" />
+    <ClInclude Include="valvesdk\engine\Cdll_int.h" />
+    <ClInclude Include="valvesdk\engine\cl_dll.h" />
+    <ClInclude Include="valvesdk\engine\cl_entity.h" />
+    <ClInclude Include="valvesdk\engine\const.h" />
+    <ClInclude Include="valvesdk\engine\crc.h" />
+    <ClInclude Include="valvesdk\engine\custom.h" />
+    <ClInclude Include="valvesdk\engine\customentity.h" />
+    <ClInclude Include="valvesdk\engine\cvardef.h" />
+    <ClInclude Include="valvesdk\engine\dlight.h" />
+    <ClInclude Include="valvesdk\engine\edict.h" />
+    <ClInclude Include="valvesdk\engine\eiface.h" />
+    <ClInclude Include="valvesdk\engine\entity_state.h" />
+    <ClInclude Include="valvesdk\engine\entity_types.h" />
+    <ClInclude Include="valvesdk\engine\event_args.h" />
+    <ClInclude Include="valvesdk\engine\event_flags.h" />
+    <ClInclude Include="valvesdk\engine\in_buttons.h" />
+    <ClInclude Include="valvesdk\engine\keydefs.h" />
+    <ClInclude Include="valvesdk\engine\particledef.h" />
+    <ClInclude Include="valvesdk\engine\pmtrace.h" />
+    <ClInclude Include="valvesdk\engine\pm_defs.h" />
+    <ClInclude Include="valvesdk\engine\pm_info.h" />
+    <ClInclude Include="valvesdk\engine\progdefs.h" />
+    <ClInclude Include="valvesdk\engine\progs.h" />
+    <ClInclude Include="valvesdk\engine\r_efx.h" />
+    <ClInclude Include="valvesdk\engine\r_studioint.h" />
+    <ClInclude Include="valvesdk\engine\shake.h" />
+    <ClInclude Include="valvesdk\engine\studio.h" />
+    <ClInclude Include="valvesdk\engine\studio_event.h" />
+    <ClInclude Include="valvesdk\engine\triangleapi.h" />
+    <ClInclude Include="valvesdk\engine\usercmd.h" />
+    <ClInclude Include="valvesdk\engine\util_vector.h" />
+    <ClInclude Include="valvesdk\engine\weaponinfo.h" />
+    <ClInclude Include="valvesdk\engine\wrect.h" />
+    <ClInclude Include="valvesdk\misc\com_model.h" />
+    <ClInclude Include="valvesdk\misc\parsemsg.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
