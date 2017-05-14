@@ -5,6 +5,8 @@ pfnUserMsgHook pSetFOV;
 pfnUserMsgHook pTeamInfo;
 pfnUserMsgHook pCurWeapon;
 pfnUserMsgHook pDeathMsg;
+pfnUserMsgHook pHealth;
+
 
 int ResetHUD( const char *pszName , int iSize , void *pbuf )
 {
@@ -54,5 +56,14 @@ int CurWeapon( const char *pszName , int iSize , void *pbuf )
 
 int DeathMsg( const char *pszName , int iSize , void *pbuf )
 {
+	return pDeathMsg( pszName , iSize , pbuf );
+}
+
+int Health( const char *pszName , int iSize , void *pbuf )
+{
+	BEGIN_READ(pbuf, iSize);
+	int Health = READ_BYTE();
+	g_Engine.Con_Printf("%i", Health);
+	g_Local.bAlive = Health > 0;
 	return pDeathMsg( pszName , iSize , pbuf );
 }

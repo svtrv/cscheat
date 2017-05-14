@@ -20,6 +20,7 @@ void HookUserMessages()
 	pTeamInfo = HookUserMsg( "TeamInfo" , TeamInfo );
 	pCurWeapon = HookUserMsg( "CurWeapon" , CurWeapon );
 	pDeathMsg = HookUserMsg( "DeathMsg" , DeathMsg );
+	pHealth = HookUserMsg( "Health", Health);
 }
 
 void InitHack()
