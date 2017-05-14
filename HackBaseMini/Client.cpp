@@ -8,7 +8,9 @@ cvar_s* bone;
 local_s g_Local;
 player_s g_Player[33];
 int g_PlayerTeam[33];
+
 #define msgbox(n) MessageBoxA(NULL,n,"tkz",MB_OK);
+
 void HookUserMessages()
 {
 	pUserMsgBase = c_Offset.FindUserMsgBase();
@@ -54,11 +56,12 @@ void HUD_Redraw( float time , int intermission )
 	g_Engine.pfnFillRGBA(g_Screen.iWidth / 2, g_Screen.iHeight / 2 - 14, 1, 9, 154, 204, 255, 150);
 	g_Engine.pfnFillRGBA(g_Screen.iWidth / 2, g_Screen.iHeight / 2 + 5, 1, 9, 154, 204, 255, 150);
 	g_Engine.pfnFillRGBA(g_Screen.iWidth / 2, g_Screen.iHeight / 2, 1, 1, 154, 204, 255, 150);
+	
 	for (int i = 1; i < 33; i++)
 	{
 		int plyr = g_PlayerTeam[i];
 		if (plyr != NULL) {
-			g_Esp.HUD_Redraw(i,bone->value);
+			g_Esp.HUD_Redraw(i, bone->value);
 		}
 	}
 }
@@ -91,6 +94,50 @@ void BhopFunction( usercmd_s *cmd )
 	}
 }
 
+#define VectorClear(a) { a[0]=0.0;a[1]=0.0;a[2]=0.0;}
+
+void AntiRecoil()
+{
+	g_Engine.Con_Printf("\tbAlive: %s, bAttacking: %s", (g_Local.bAlive) ? "True" : "False", (g_Local.bAttacking) ? "True" : "False");
+	if (g_Local.bAlive) // почему-то всегда false
+	{
+		if (g_Local.bAttacking)
+		{
+
+			static float ViewAngles[3], NewPunchangle[3];
+			static float PrevPunchangle[3];
+			
+			NewPunchangle[0] = g_Local.vViewAngles[0]; // g_Local.cmdviewangles[0];              // ppmove->punchangle[0] * 2.0f; //*2 works fine...
+			NewPunchangle[1] = g_Local.vViewAngles[1]; // g_Engine.ppmove->punchangle[1] * 2.0f; //*2 works fine...
+			
+															 //This avoid problems...
+			if ((NewPunchangle[0] == 0.0f) && (NewPunchangle[1] == 0.0f))
+				VectorClear(PrevPunchangle);
+
+			//This will obtain the current viewangles...
+			ViewAngles[0] = *(float*)((DWORD)0x02DE10C4);
+			ViewAngles[1] = *(float*)((DWORD)0x02DE10C8);
+			ViewAngles[2] = *(float*)((DWORD)0x02DE10CC);
+
+			//Decrease the punchangles & the previous punchangles...
+			ViewAngles[0] -= NewPunchangle[0] - PrevPunchangle[0];
+			ViewAngles[1] -= NewPunchangle[1] - PrevPunchangle[1];
+
+			//Set new viewangles with the punchangles decreased...
+			*(float*)0x02DE10C4 = ViewAngles[0];
+			*(float*)0x02DE10C8 = ViewAngles[1];
+			*(float*)0x02DE10CC = ViewAngles[2];
+
+			//Save the punchangles to avoid problems with the new punchangles...
+			PrevPunchangle[0] = NewPunchangle[0];
+			PrevPunchangle[1] = NewPunchangle[1];
+
+			g_Engine.SetViewAngles(ViewAngles);
+			g_Engine.Con_Printf("\tviewangles: %d", ViewAngles);
+		}
+	}
+}
+
 void CL_CreateMove(float frametime, usercmd_s *cmd, int active)
 {
 
@@ -113,11 +160,13 @@ void CL_CreateMove(float frametime, usercmd_s *cmd, int active)
 	}
 	
 	BhopFunction(cmd);
+	AntiRecoil();
 }
 
 void SetViewAngles( float * Angles )
 {
 	//g_Engine.Con_Printf( "\tAngles_x: %0.2f , Angles_y: %0.2f\n" , Angles[0] , Angles[1] );
+
 	g_Engine.SetViewAngles( Angles );
 }
 
