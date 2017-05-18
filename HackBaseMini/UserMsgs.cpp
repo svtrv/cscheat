@@ -6,7 +6,10 @@ pfnUserMsgHook pTeamInfo;
 pfnUserMsgHook pCurWeapon;
 pfnUserMsgHook pDeathMsg;
 pfnUserMsgHook pHealth;
-
+int v_Health;
+int v_SpecHealth;
+int v_SpecHealth2;
+int v_ID;
 
 int ResetHUD( const char *pszName , int iSize , void *pbuf )
 {
@@ -62,8 +65,24 @@ int DeathMsg( const char *pszName , int iSize , void *pbuf )
 int Health( const char *pszName , int iSize , void *pbuf )
 {
 	BEGIN_READ(pbuf, iSize);
-	int Health = READ_BYTE();
-	g_Engine.Con_Printf("%i", Health);
-	g_Local.bAlive = Health > 0;
+	v_Health = READ_BYTE();
+	g_Engine.Con_Printf("Health=%i", v_Health);
+	return pDeathMsg( pszName , iSize , pbuf );
+}
+
+int SpecHealth( const char *pszName , int iSize , void *pbuf )
+{
+	BEGIN_READ(pbuf, iSize);
+	v_SpecHealth = READ_BYTE();
+	g_Engine.Con_Printf("SpechHealth=%i", v_SpecHealth);
+	return pDeathMsg( pszName , iSize , pbuf );
+}
+
+int SpecHealth2( const char *pszName , int iSize , void *pbuf )
+{
+	BEGIN_READ(pbuf, iSize);
+	v_SpecHealth2 = READ_BYTE();
+	v_ID = READ_BYTE();
+	g_Engine.Con_Printf("SpechHealth2=%i\nID=%i", v_SpecHealth2, v_ID);
 	return pDeathMsg( pszName , iSize , pbuf );
 }

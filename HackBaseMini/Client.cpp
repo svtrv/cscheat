@@ -21,6 +21,8 @@ void HookUserMessages()
 	pCurWeapon = HookUserMsg( "CurWeapon" , CurWeapon );
 	pDeathMsg = HookUserMsg( "DeathMsg" , DeathMsg );
 	pHealth = HookUserMsg( "Health", Health);
+	HookUserMsg( "SpecHealth", SpecHealth);
+	HookUserMsg( "SpecHealth2", SpecHealth2);
 }
 
 void InitHack()
@@ -98,8 +100,9 @@ void BhopFunction( usercmd_s *cmd )
 #define VectorClear(a) { a[0]=0.0;a[1]=0.0;a[2]=0.0;}
 
 void AntiRecoil()
-{
-	g_Engine.Con_Printf("\tbAlive: %s, bAttacking: %s", (g_Local.bAlive) ? "True" : "False", (g_Local.bAttacking) ? "True" : "False");
+{	
+
+	//g_Engine.Con_Printf("\tbAlive: %s, bAttacking: %s", (g_Local.bAlive) ? "True" : "False", (g_Local.bAttacking) ? "True" : "False");
 	if (g_Local.bAlive) // почему-то всегда false
 	{
 		if (g_Local.bAttacking)
@@ -134,7 +137,7 @@ void AntiRecoil()
 			PrevPunchangle[1] = NewPunchangle[1];
 
 			g_Engine.SetViewAngles(ViewAngles);
-			g_Engine.Con_Printf("\tviewangles: %d", ViewAngles);
+		//	g_Engine.Con_Printf("\tviewangles: %d", ViewAngles);
 		}
 	}
 }
